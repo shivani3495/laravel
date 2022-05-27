@@ -1,0 +1,31 @@
+version: 0.2
+    
+phases:
+  install:
+    commands:
+      - curl -sS -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
+      - curl -sS -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl ./aws-iam-authenticator
+      - export PATH=$PWD/:$PATH
+      - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
+      - curl -s https://getcomposer.org/installer | php
+      - mv  composer.phar /usr/local/bin/composer
+      - php --version
+      - composer install
+      - cp extra/.env ./
+      - php artisan cache:clear
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...  
+      - echo Logging in to Amazon EKS...
+      - aws eks --region ap-south-1 update-kubeconfig --name lavarel-cluster --role-arn arn:aws:iam::228431726353:role/eksclusterrole
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Change directory to secondary source
+      - cd $CODEBUILD_SRC_DIR
+      - echo List directory
+      - ls -la
+      - echo Push the latest image to cluster
+      - kubectl get pod
+      - kubectl create -f deployment.yaml
