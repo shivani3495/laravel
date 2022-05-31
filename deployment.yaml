@@ -15,5 +15,5 @@ spec:
         app: laravel
     spec:
       containers:
-      - name: aspsample
+      - name: laravel
         image: 228431726353.dkr.ecr.ap-south-1.amazonaws.com/laravel:latest 
