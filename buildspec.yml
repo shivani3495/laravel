@@ -28,4 +28,4 @@ phases:
       - ls -la
       - echo Push the latest image to cluster
       - kubectl get pod
-      - kubectl create -f deployment.yaml
+      - kubectl apply -f deployment.yaml
