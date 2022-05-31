@@ -16,7 +16,7 @@ phases:
     commands:
       - echo Entered the pre_build phase...  
       - echo Logging in to Amazon EKS...
-      - export KUBECONFIG=$HOME/.kube/config
+      - export KUBECONFIG=$HOME/.kube/config  ##
       - aws eks update-kubeconfig --region ap-south-1 --name laravel --role-arn arn:aws:iam::228431726353:role/eksclusterrole
   build:
     commands:
