@@ -11,7 +11,7 @@ phases:
       - mv  composer.phar /usr/local/bin/composer
       - php --version
       - composer global require laravel/installer
-      - cp .env ./
+      - cp .env.example ./
       - php artisan cache:clear
   pre_build:
     commands:
