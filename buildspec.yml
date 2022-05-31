@@ -10,7 +10,6 @@ phases:
       - curl -s https://getcomposer.org/installer | php
       - mv  composer.phar /usr/local/bin/composer
       - php --version
-      - apt install composer
       - composer global require laravel/installer
       - cp extra/.env ./
       - php artisan cache:clear
