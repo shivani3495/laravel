@@ -25,7 +25,7 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks --region ap-south-1 update-kubeconfig --name laravel
       - cat $HOME/.kube/config
-      - kubectl create -f deployment.yaml
+      
   build:
     commands:
       - echo Entered the build phase...
